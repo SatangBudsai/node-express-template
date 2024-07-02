@@ -19,55 +19,49 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Prisma.userCreateManyInput": {
+			"Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__": {
 				"properties": {
-					"update_time": {
-						"anyOf": [
-							{
-								"type": "string",
-								"format": "date-time"
-							},
-							{
-								"type": "string"
-							}
-						],
-						"nullable": true
+					"user_unique_key": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"profile": {
+						"type": "string"
 					},
 					"created_time": {
 						"anyOf": [
 							{
-								"type": "string",
-								"format": "date-time"
+								"type": "string"
 							},
 							{
-								"type": "string"
+								"type": "string",
+								"format": "date-time"
 							}
 						]
 					},
-					"profile": {
-						"type": "string",
-						"nullable": true
-					},
-					"name": {
-						"type": "string",
-						"nullable": true
-					},
-					"user_unique_key": {
-						"type": "string"
-					},
-					"secret_key": {
-						"type": "string"
-					},
-					"id": {
-						"type": "number",
-						"format": "double"
+					"update_time": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							}
+						]
 					}
 				},
 				"required": [
-					"user_unique_key",
-					"secret_key"
+					"user_unique_key"
 				],
-				"type": "object"
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_Prisma.userCreateInput.mst_app_": {
+				"$ref": "#/components/schemas/Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__",
+				"description": "Construct a type with the properties of T except for those in type K."
 			}
 		},
 		"securitySchemes": {}
@@ -96,6 +90,9 @@
 						}
 					}
 				},
+				"tags": [
+					"Ping"
+				],
 				"security": [],
 				"parameters": []
 			},
@@ -113,6 +110,9 @@
 						}
 					}
 				},
+				"tags": [
+					"Ping"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -120,7 +120,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Prisma.userCreateManyInput"
+								"$ref": "#/components/schemas/Omit_Prisma.userCreateInput.mst_app_"
 							}
 						}
 					}
@@ -140,11 +140,23 @@
 						}
 					}
 				},
+				"tags": [
+					"Ping"
+				],
 				"security": [],
 				"parameters": [
 					{
 						"in": "query",
 						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "id2",
 						"required": true,
 						"schema": {
 							"format": "double",

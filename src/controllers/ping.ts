@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Post, Put, Route, Query } from "tsoa";
+import { Body, Controller, Get, Post, Put, Route, Query, Tags } from "tsoa";
 import { Prisma, massage, user } from "@prisma/client";
 
 interface PingResponse {
   message: string;
 }
-
+@Tags("Ping")
 @Route("ping")
 export class PingController extends Controller {
   @Get("/")
@@ -15,14 +15,17 @@ export class PingController extends Controller {
   }
   @Post("/")
   public async createMessage(
-    @Body() req: Prisma.userCreateInput
+    @Body() req: Omit<Prisma.userCreateInput, "mst_app">
   ): Promise<PingResponse> {
     return {
       message: `Create hello`,
     };
   }
   @Put("/")
-  public async updateMessage(@Query() id: number): Promise<PingResponse> {
+  public async updateMessage(
+    @Query() id: number,
+    @Query() id2: number
+  ): Promise<PingResponse> {
     return {
       message: `Update user : ${id}`,
     };

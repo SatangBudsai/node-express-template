@@ -19,9 +19,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Prisma.userCreateManyInput": {
+    "Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"update_time":{"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"string"},{"dataType":"enum","enums":[null]}]},"created_time":{"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"string"}]},"profile":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},"name":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},"user_unique_key":{"dataType":"string","required":true},"secret_key":{"dataType":"string","required":true},"id":{"dataType":"double"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"user_unique_key":{"dataType":"string","required":true},"name":{"dataType":"string"},"profile":{"dataType":"string"},"created_time":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"datetime"}]},"update_time":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"datetime"}]}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Omit_Prisma.userCreateInput.mst_app_": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -69,7 +74,7 @@ export function RegisterRoutes(app: Router) {
 
             async function PingController_createMessage(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    req: {"in":"body","name":"req","required":true,"ref":"Prisma.userCreateManyInput"},
+                    req: {"in":"body","name":"req","required":true,"ref":"Omit_Prisma.userCreateInput.mst_app_"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -100,6 +105,7 @@ export function RegisterRoutes(app: Router) {
             async function PingController_updateMessage(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     id: {"in":"query","name":"id","required":true,"dataType":"double"},
+                    id2: {"in":"query","name":"id2","required":true,"dataType":"double"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

@@ -21,14 +21,20 @@ app.use(
   })
 );
 
+const router = express.Router();
 app.get("/", async (_req, res) => {
   res.send({
     message: "API ALREADY",
   });
 });
+app.use(router);
 
 RegisterRoutes(app);
 
 app.listen(PORT, () => {
-  console.log("Server is running on port", PORT);
+  console.log(
+    `Server is running on port ${
+      process.env.PORT ? PORT : `http://localhost:${PORT}`
+    }`
+  );
 });
