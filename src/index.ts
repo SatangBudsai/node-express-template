@@ -3,7 +3,7 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "./routes";
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 const app: Application = express();
 
