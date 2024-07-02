@@ -24,7 +24,8 @@ app.use(
 const router = express.Router();
 app.get("/", async (_req, res) => {
   res.send({
-    message: "API ALREADY",
+    message: "API START",
+    swaggerPath: `http://localhost:${PORT}/swagger`,
   });
 });
 app.use(router);
