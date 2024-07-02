@@ -3,7 +3,7 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "./routes/routes"; // here
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.DATABASE_URL || 8000;
 
 const app: Application = express();
 
@@ -32,9 +32,5 @@ app.use(router);
 RegisterRoutes(app);
 
 app.listen(PORT, () => {
-  console.log(
-    `Server is running on port ${
-      process.env.PORT ? PORT : `http://localhost:${PORT}`
-    }`
-  );
+  console.log(`Server is running on port http://localhost:${PORT}/swagger`);
 });
