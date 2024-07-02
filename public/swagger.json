@@ -7,6 +7,48 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"DefaultSelection_Prisma._36_userPayload_": {
+				"properties": {
+					"update_time": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_time": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"profile": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"user_unique_key": {
+						"type": "string"
+					},
+					"app_id": {
+						"type": "string"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"update_time",
+					"created_time",
+					"profile",
+					"name",
+					"user_unique_key",
+					"app_id",
+					"id"
+				],
+				"type": "object"
+			},
+			"user": {
+				"$ref": "#/components/schemas/DefaultSelection_Prisma._36_userPayload_",
+				"description": "Model user\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\nThis model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info."
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -16,15 +58,14 @@
 				"required": [
 					"message"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			},
 			"Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__": {
 				"properties": {
-					"user_unique_key": {
+					"name": {
 						"type": "string"
 					},
-					"name": {
+					"user_unique_key": {
 						"type": "string"
 					},
 					"profile": {
@@ -75,6 +116,31 @@
 		"contact": {}
 	},
 	"paths": {
+		"/user": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/user"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/ping": {
 			"get": {
 				"operationId": "GetMessage",
