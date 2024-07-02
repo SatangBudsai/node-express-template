@@ -12,11 +12,11 @@
   },
   "scripts": {
     "start": "node build/index.js",
-    "predev": "npm run swagger",
-    "prebuild": "npm run swagger",
     "build": "tsc",
-    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
-    "swagger": "tsoa spec"
+    "debug-controllers": "echo Matched controllers: && ls ./src/controllers/*.ts",
+    "build:swagger": "tsoa spec-and-routes",
+    "swagger": "tsoa spec",
+    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\""
   },
   "nodemonConfig": {
     "watch": [
