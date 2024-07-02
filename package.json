@@ -6,17 +6,17 @@
   "dependencies": {
     "@types/morgan": "^1.9.9",
     "express": "^4.19.2",
+    "joi": "^17.13.3",
     "morgan": "^1.10.0",
     "swagger-ui-express": "^5.0.1",
     "tsoa": "^6.3.1"
   },
   "scripts": {
-    "start": "node build/index.js",
     "build": "tsc",
-    "debug-controllers": "echo Matched controllers: && ls ./src/controllers/*.ts",
-    "build:swagger": "tsoa spec-and-routes",
-    "swagger": "tsoa spec",
-    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\""
+    "start": "node build/index.js",
+    "debug-controllers": "echo Matched controllers: && ls src/controllers/*.ts",
+    "build:routes": "tsoa spec-and-routes",
+    "dev": "concurrently \"yarn build:routes && nodemon\" \"nodemon -x tsoa spec\""
   },
   "nodemonConfig": {
     "watch": [
