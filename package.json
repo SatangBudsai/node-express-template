@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "description": "API Service Node Express Template",
   "dependencies": {
     "@prisma/client": "^5.16.1",
     "@types/morgan": "^1.9.9",

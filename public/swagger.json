@@ -110,6 +110,7 @@
 	"info": {
 		"title": "node-express-template",
 		"version": "1.0.0",
+		"description": "API Service Node Express Template",
 		"license": {
 			"name": "MIT"
 		},
