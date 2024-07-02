@@ -21,6 +21,12 @@ app.use(
   })
 );
 
+app.get("/", async (_req, res) => {
+  res.send({
+    message: "API ALREADY",
+  });
+});
+
 RegisterRoutes(app);
 
 app.listen(PORT, () => {
