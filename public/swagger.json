@@ -48,9 +48,7 @@
 				},
 				"security": [],
 				"parameters": []
-			}
-		},
-		"/ping/create": {
+			},
 			"post": {
 				"operationId": "CreateMessage",
 				"responses": {
@@ -67,6 +65,41 @@
 				},
 				"security": [],
 				"parameters": []
+			},
+			"put": {
+				"operationId": "UpdateMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
 			}
 		}
 	},

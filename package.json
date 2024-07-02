@@ -9,21 +9,15 @@
     "joi": "^17.13.3",
     "morgan": "^1.10.0",
     "swagger-ui-express": "^5.0.1",
-    "tsoa": "^6.3.1"
+    "tsoa": "^6.3.1",
+    "wait-on": "^7.2.0"
   },
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
     "debug-controllers": "echo Matched controllers: && ls src/controllers/*.ts",
     "build:routes": "tsoa spec-and-routes",
-    "dev": "concurrently \"yarn build:routes && nodemon\" \"nodemon -x tsoa spec\""
-  },
-  "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
-    "exec": "ts-node src/index.ts"
+    "dev": "concurrently \"yarn build:routes && nodemon\""
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

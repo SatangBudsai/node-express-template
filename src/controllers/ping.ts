@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Route } from "tsoa";
+import { Body, Controller, Get, Post, Put, Route } from "tsoa";
 
 interface PingResponse {
   message: string;
@@ -12,10 +12,18 @@ export class PingController extends Controller {
       message: "hello",
     };
   }
-  @Post("/create")
+  @Post("/")
   public async createMessage(): Promise<PingResponse> {
     return {
       message: "Create hello",
+    };
+  }
+  @Put("/")
+  public async updateMessage(
+    @Body() req: { name: string }
+  ): Promise<PingResponse> {
+    return {
+      message: `Update user : ${req.name}`,
     };
   }
 }
