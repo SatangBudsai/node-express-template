@@ -15,7 +15,7 @@ model conversation {
   type                conversation_type?
   created_time        DateTime              @default(now()) @db.Timestamptz(6)
   update_time         DateTime?             @db.Timestamptz(6)
-  mst_app             mst_app               @relation(fields: [app_id], references: [id], onDelete: Cascade)
+  mst_app             application           @relation(fields: [app_id], references: [id], onDelete: Cascade)
   conversation_member conversation_member[]
   message             message[]
 }
@@ -28,25 +28,10 @@ model user {
   user_key            String
   name                String?
   profile             String?
-  created_time        DateTime              @default(now()) @db.Timestamptz(6)
+  created_time        DateTime?             @default(now()) @db.Timestamptz(6)
   update_time         DateTime?             @db.Timestamptz(6)
   conversation_member conversation_member[]
-  message             message[]
-  mst_app             mst_app               @relation(fields: [app_id], references: [id], onDelete: Cascade)
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model mst_app {
-  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  domain       String?
-  name         String?
-  logo         String?
-  created_time DateTime       @default(now()) @db.Timestamptz(6)
-  update_time  DateTime?      @db.Timestamptz(6)
-  conversation conversation[]
-  message      message[]
-  user         user[]
+  mst_app             application           @relation(fields: [app_id], references: [id], onDelete: Cascade)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -65,25 +50,54 @@ model conversation_member {
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model message {
   id              String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  app_id          String?       @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  sender_id       String?       @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  conversation_id String?       @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sender_id       String
+  conversation_id String        @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   type            massage_type?
   message         String?
   user_read       Json?
   created_time    DateTime      @default(now()) @db.Timestamptz(6)
   update_time     DateTime?     @db.Timestamptz(6)
-  mst_app         mst_app?      @relation(fields: [app_id], references: [id], onDelete: Cascade)
-  conversation    conversation? @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
-  user            user?         @relation(fields: [sender_id], references: [id], onDelete: Cascade, map: "message_user_send_id_fkey")
+  conversation    conversation  @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model api_ext_find_many_users {
+  id           String        @id(map: "api_external_find_many_users_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  app_id       String?       @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  url          String?
+  headers      Json?
+  type_user_id type_user_id?
+  created_time DateTime      @default(now()) @db.Timestamptz(6)
+  update_time  DateTime?     @db.Timestamptz(6)
+  application  application?  @relation(fields: [app_id], references: [id], onDelete: Cascade, map: "api_external_find_many_users_app_id_fkey")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model application {
+  id                      String                    @id(map: "mst_app_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  domain                  String?
+  name                    String?
+  logo                    String?
+  created_time            DateTime                  @default(now()) @db.Timestamptz(6)
+  update_time             DateTime?                 @db.Timestamptz(6)
+  api_ext_find_many_users api_ext_find_many_users[]
+  conversation            conversation[]
+  user                    user[]
 }
 
 enum conversation_type {
   group
-  one_to_one
+  singer
 }
 
 enum massage_type {
   text
   image
+}
+
+enum type_user_id {
+  string
+  int
 }
