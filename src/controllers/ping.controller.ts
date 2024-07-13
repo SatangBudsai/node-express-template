@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Post, Put, Route, Query, Tags } from "tsoa";
-import { Prisma, massage, user } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { pingService } from "../services/ping.service";
 import { PingResponse } from "../types/response/ping.response";
+import { messageCreateType } from "../../prisma/generated/types/message/createType";
 
 @Tags("Ping")
 @Route("ping")
@@ -14,7 +15,7 @@ export class PingController extends Controller {
 
   @Post("/")
   public async createMessage(
-    @Body() req: Omit<Prisma.userCreateInput, "mst_app">
+    @Body() req: messageCreateType
   ): Promise<PingResponse> {
     return {
       message: `Create hello`,
