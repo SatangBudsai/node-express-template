@@ -49,6 +49,48 @@
 				"$ref": "#/components/schemas/DefaultSelection_Prisma._36_userPayload_",
 				"description": "Model user\nThis model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments\nThis model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info."
 			},
+			"mockData": {
+				"properties": {
+					"tel": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"tel",
+					"name"
+				],
+				"type": "object"
+			},
+			"ApiResponseType_mockData_": {
+				"properties": {
+					"data": {
+						"$ref": "#/components/schemas/mockData"
+					},
+					"code": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"success",
+							"error"
+						]
+					}
+				},
+				"required": [
+					"code",
+					"message",
+					"status"
+				],
+				"type": "object"
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -136,6 +178,148 @@
 				},
 				"tags": [
 					"User"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/success": {
+			"get": {
+				"operationId": "GetSuccess",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiResponseType_mockData_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/error": {
+			"get": {
+				"operationId": "GetError",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/not-found": {
+			"get": {
+				"operationId": "GetNotFound",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/validation-error": {
+			"get": {
+				"operationId": "GetValidationError",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/unauthorized": {
+			"get": {
+				"operationId": "GetUnauthorized",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/forbidden": {
+			"get": {
+				"operationId": "GetForbidden",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/bad-request": {
+			"get": {
+				"operationId": "GetBadRequest",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/conflict": {
+			"get": {
+				"operationId": "GetConflict",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/response/internal-server-error": {
+			"get": {
+				"operationId": "GetInternalServerError",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Response"
 				],
 				"security": [],
 				"parameters": []
