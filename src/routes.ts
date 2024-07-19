@@ -17,7 +17,7 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 const models: TsoaRoute.Models = {
     "DefaultSelection_Prisma._36_userPayload_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"update_time":{"dataType":"datetime","required":true},"created_time":{"dataType":"datetime","required":true},"profile":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"user_unique_key":{"dataType":"string","required":true},"app_id":{"dataType":"string","required":true},"id":{"dataType":"double","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"update_time":{"dataType":"datetime","required":true},"created_time":{"dataType":"datetime","required":true},"profile":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"user_key":{"dataType":"string","required":true},"app_id":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "user": {
@@ -40,14 +40,14 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"message":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"},"user_unique_key":{"dataType":"string","required":true},"profile":{"dataType":"string"},"created_time":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"datetime"}]},"update_time":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"datetime"}]}},"validators":{}},
+    "massage_type": {
+        "dataType": "refEnum",
+        "enums": ["text","image"],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Omit_Prisma.userCreateInput.mst_app_": {
+    "messageCreateType": {
         "dataType": "refAlias",
-        "type": {"ref":"Pick_Prisma.userCreateInput.Exclude_keyofPrisma.userCreateInput.mst_app__","validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"update_time":{"dataType":"union","subSchemas":[{"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"string"}]},{"dataType":"enum","enums":[null]}]},"created_time":{"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"string"}]},"user_read":{"dataType":"union","subSchemas":[{"dataType":"any"},{"dataType":"enum","enums":[null]}]},"message":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},"type":{"dataType":"union","subSchemas":[{"ref":"massage_type"},{"dataType":"enum","enums":[null]}]},"conversation_id":{"dataType":"string"},"sender_id":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -60,7 +60,7 @@ export function RegisterRoutes(app: Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.get('/user',
+        app.get('/user/all',
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.getAll)),
 
@@ -385,7 +385,7 @@ export function RegisterRoutes(app: Router) {
 
             async function PingController_createMessage(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    req: {"in":"body","name":"req","required":true,"ref":"Omit_Prisma.userCreateInput.mst_app_"},
+                    req: {"in":"body","name":"req","required":true,"ref":"messageCreateType"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

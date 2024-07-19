@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "description": "API Service Node Express Template",
   "dependencies": {
     "@prisma/client": "^5.16.1",
     "@types/morgan": "^1.9.9",
@@ -18,9 +19,11 @@
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
-    "generate-db": "npx prisma db pull && npx prisma generate",
     "debug-controllers": "echo Matched controllers: && ls src/controllers/*.ts",
     "build:routes": "tsoa spec-and-routes",
+    "prisma:pull": "npx prisma db pull && npx prisma generate && yarn prisma:generate-type",
+    "prisma:generate": "prisma generate && yarn prisma:generate-type",
+    "prisma:generate-type": "npx prisma-generator-types-crud ./prisma/generated/ ./prisma/schema.prisma --useType --prettier",
     "dev": "yarn build:routes && nodemon"
   },
   "devDependencies": {
@@ -29,6 +32,8 @@
     "@types/swagger-ui-express": "^4.1.6",
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.4",
+    "prettier": "3.3.3",
+    "prisma-generator-types-crud": "^1.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   }
