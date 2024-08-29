@@ -11,4 +11,4 @@ node_modules/
 prisma/generated/
 
 # Generate Route
-src/routers/generated/
+src/routers.ts
