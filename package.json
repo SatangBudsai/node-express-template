@@ -23,7 +23,7 @@
     "build:routes": "tsoa spec-and-routes",
     "prisma:pull": "npx prisma db pull && npx prisma generate && yarn prisma:generate-type",
     "prisma:generate": "prisma generate && yarn prisma:generate-type",
-    "prisma:generate-type": "npx prisma-generator-types-crud ./prisma/generated/ ./prisma/schema.prisma --useType --prettier",
+    "prisma:generate-type": "npx prisma-generator-types-crud ./prisma/generated/ ./prisma/schema.prisma --modelRules ./prisma/generated/model-rules.json --useType",
     "dev": "yarn build:routes && nodemon"
   },
   "devDependencies": {

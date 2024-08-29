@@ -372,6 +372,11 @@
   resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.16.1.tgz#65c5649b4701c097e7fa943c91a3140ce8bf053d"
   integrity sha512-wM9SKQjF0qLxdnOZIVAIMKiz6Hu7vDt4FFAih85K1dk/Rr2mdahy6d3QP41K62N9O0DJJA//gUDA3Mp49xsKIg==
 
+"@prisma/client@^5.16.2":
+  version "5.19.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.19.0.tgz#db0b4a5b536aeda7f91126e83685e6663c1d2ed1"
+  integrity sha512-CzOpau+q1kEWQyoQMvlnXIHqPvwmWbh48xZ4n8KWbAql0p8PC0BIgSTYW5ncxXa4JSEff0tcoxSZB874wDstdg==
+
 "@prisma/debug@4.16.2":
   version "4.16.2"
   resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-4.16.2.tgz#d93724e4d7a46ed7e9c9daf1cc66dac736596c7e"
@@ -524,6 +529,11 @@
   version "4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81"
   resolved "https://registry.yarnpkg.com/@prisma/prisma-fmt-wasm/-/prisma-fmt-wasm-4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81.tgz#0828621f3818140c12d45695defdaadfffb6642d"
   integrity sha512-g090+dEH7wrdCw359+8J9+TGH84qK28V/dxwINjhhNCtju9lej99z9w/AVsJP9UhhcCPS4psYz4iu8d53uxVpA==
+
+"@prisma/prisma-fmt-wasm@^4.17.0-16.27eb2449f178cd9fe1a4b892d732cc4795f75085":
+  version "4.17.0-16.27eb2449f178cd9fe1a4b892d732cc4795f75085"
+  resolved "https://registry.yarnpkg.com/@prisma/prisma-fmt-wasm/-/prisma-fmt-wasm-4.17.0-16.27eb2449f178cd9fe1a4b892d732cc4795f75085.tgz#030f8a4448892c345b3c5c0558ca0ebf4642f3de"
+  integrity sha512-zYz3rFwPB82mVlHGknAPdnSY/a308dhPOblxQLcZgZTDRtDXOE1MgxoRAys+jekwR4/bm3+rZDPs1xsFMsPZig==
 
 "@sideway/address@^4.1.5":
   version "4.1.5"
@@ -2020,7 +2030,7 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-kleur@4.1.5:
+kleur@4.1.5, kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
@@ -2505,12 +2515,15 @@ prettier@3.3.3:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.3.3.tgz#30c54fe0be0d8d12e6ae61dbb10109ea00d53105"
   integrity sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==
 
-prisma-generator-types-crud@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/prisma-generator-types-crud/-/prisma-generator-types-crud-1.1.2.tgz#ebf85fb9da329333aa508fc1fd6a29880264624c"
-  integrity sha512-ogMzirO9jUpk50UJe3HjA+T9lBz5CE/GXewG6sPVFeYERK9eaYENQQzDk7kBbx7q2w0LCWwHAvlyA3bSu/7D5g==
+prisma-generator-types-crud@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/prisma-generator-types-crud/-/prisma-generator-types-crud-2.1.4.tgz#90bfe138d677feaabe484fac8db3e4c85275ab31"
+  integrity sha512-UdxUyQfCIGQBsnK3O06WjtGwNqYy+G0Z7kKKbIHo7b6lzE9QFb4cpRB/p68kpnJnLha8SjDjdfXIZhGQjgwRlw==
   dependencies:
+    "@prisma/client" "^5.16.2"
     "@prisma/internals" "^4.2.0"
+    "@prisma/prisma-fmt-wasm" "^4.17.0-16.27eb2449f178cd9fe1a4b892d732cc4795f75085"
+    kleur "^4.1.5"
 
 prisma@^5.16.1:
   version "5.16.1"
