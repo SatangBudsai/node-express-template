@@ -17,7 +17,7 @@ export class ResponseController extends Controller {
 
   @Get("not-found")
   public async getNotFound(): Promise<ApiResponseType<string>> {
-    const res = responseService.getNotFoundMessage();
+    const res = await responseService.getNotFoundMessage();
     return ApiResponse.Success(res);
   }
 

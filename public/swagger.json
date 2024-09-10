@@ -90,6 +90,33 @@
 				],
 				"type": "object"
 			},
+			"ApiResponseType_string_": {
+				"properties": {
+					"data": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"code": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"success",
+							"error"
+						]
+					}
+				},
+				"required": [
+					"message",
+					"code",
+					"status"
+				],
+				"type": "object"
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -255,8 +282,15 @@
 			"get": {
 				"operationId": "GetNotFound",
 				"responses": {
-					"204": {
-						"description": "No content"
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiResponseType_string_"
+								}
+							}
+						}
 					}
 				},
 				"tags": [

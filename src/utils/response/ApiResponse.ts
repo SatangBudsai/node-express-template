@@ -118,4 +118,17 @@ export class ApiResponse {
       data: additionalData,
     };
   }
+
+  static OccurredError<T>(
+    message: string,
+    errorCode: number = 500,
+    additionalData: any = null
+  ): ApiResponseType<T> {
+    return {
+      status: "error",
+      code: errorCode,
+      message,
+      data: additionalData,
+    };
+  }
 }
