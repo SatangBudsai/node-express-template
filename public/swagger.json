@@ -68,12 +68,12 @@
 					"data": {
 						"$ref": "#/components/schemas/mockData"
 					},
+					"message": {
+						"type": "string"
+					},
 					"code": {
 						"type": "number",
 						"format": "double"
-					},
-					"message": {
-						"type": "string"
 					},
 					"status": {
 						"type": "string",
@@ -84,8 +84,8 @@
 					}
 				},
 				"required": [
-					"code",
 					"message",
+					"code",
 					"status"
 				],
 				"type": "object"
@@ -101,12 +101,48 @@
 				],
 				"type": "object"
 			},
-			"massage_type": {
+			"_36_Enums.massage_type": {
+				"type": "string",
 				"enum": [
 					"text",
 					"image"
+				]
+			},
+			"massage_type": {
+				"$ref": "#/components/schemas/_36_Enums.massage_type"
+			},
+			"JsonValue": {
+				"anyOf": [
+					{
+						"type": "string"
+					},
+					{
+						"type": "number",
+						"format": "double"
+					},
+					{
+						"type": "boolean"
+					},
+					{
+						"$ref": "#/components/schemas/JsonObject"
+					},
+					{
+						"$ref": "#/components/schemas/JsonArray"
+					}
 				],
-				"type": "string"
+				"nullable": true
+			},
+			"JsonObject": {
+				"properties": {},
+				"additionalProperties": {
+					"$ref": "#/components/schemas/JsonValue"
+				},
+				"type": "object"
+			},
+			"JsonArray": {
+				"properties": {},
+				"type": "object",
+				"additionalProperties": false
 			},
 			"messageCreateType": {
 				"properties": {
@@ -122,18 +158,13 @@
 						],
 						"nullable": true
 					},
-					"created_time": {
+					"user_read": {
 						"anyOf": [
 							{
-								"type": "string",
-								"format": "date-time"
+								"$ref": "#/components/schemas/JsonValue"
 							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"user_read": {
+							{}
+						],
 						"nullable": true
 					},
 					"message": {
@@ -220,21 +251,6 @@
 				"parameters": []
 			}
 		},
-		"/response/error": {
-			"get": {
-				"operationId": "GetError",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Response"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
 		"/response/not-found": {
 			"get": {
 				"operationId": "GetNotFound",
@@ -253,81 +269,6 @@
 		"/response/validation-error": {
 			"get": {
 				"operationId": "GetValidationError",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Response"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/response/unauthorized": {
-			"get": {
-				"operationId": "GetUnauthorized",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Response"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/response/forbidden": {
-			"get": {
-				"operationId": "GetForbidden",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Response"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/response/bad-request": {
-			"get": {
-				"operationId": "GetBadRequest",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Response"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/response/conflict": {
-			"get": {
-				"operationId": "GetConflict",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Response"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/response/internal-server-error": {
-			"get": {
-				"operationId": "GetInternalServerError",
 				"responses": {
 					"204": {
 						"description": "No content"

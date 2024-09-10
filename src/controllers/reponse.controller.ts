@@ -1,7 +1,7 @@
 import { Controller, Get, Route, Tags } from "tsoa";
 import { responseService } from "../services/response.service";
-import { ApiResponse } from "../utils/response/response.utils";
 import { ApiResponseType } from "../utils/response/apiResponseType";
+import { ApiResponse } from "../utils/response/ApiResponse";
 type mockData = {
   name: string;
   tel: string;
@@ -15,43 +15,14 @@ export class ResponseController extends Controller {
     return ApiResponse.Success(res);
   }
 
-  @Get("error")
-  public async getError(): Promise<void> {
-    responseService.getErrorMessage();
-  }
-
   @Get("not-found")
-  public async getNotFound(): Promise<void> {
-    responseService.getNotFoundMessage();
+  public async getNotFound(): Promise<ApiResponseType<string>> {
+    const res = responseService.getNotFoundMessage();
+    return ApiResponse.Success(res);
   }
 
   @Get("validation-error")
   public async getValidationError(): Promise<void> {
     responseService.getValidationErrorMessage();
-  }
-
-  @Get("unauthorized")
-  public async getUnauthorized(): Promise<void> {
-    responseService.getUnauthorizedMessage();
-  }
-
-  @Get("forbidden")
-  public async getForbidden(): Promise<void> {
-    responseService.getForbiddenMessage();
-  }
-
-  @Get("bad-request")
-  public async getBadRequest(): Promise<void> {
-    responseService.getBadRequestMessage();
-  }
-
-  @Get("conflict")
-  public async getConflict(): Promise<void> {
-    responseService.getConflictMessage();
-  }
-
-  @Get("internal-server-error")
-  public async getInternalServerError(): Promise<void> {
-    responseService.getInternalServerErrorMessage();
   }
 }

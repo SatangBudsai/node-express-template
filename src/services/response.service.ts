@@ -1,4 +1,5 @@
-import { ApiResponse } from "../utils/response/response.utils";
+import { ApiResponse } from "../utils/response/ApiResponse";
+
 type mockData = {
   name: string;
   tel: string;
@@ -11,33 +12,13 @@ export const responseService = {
       tel: " test",
     };
     const x = 2;
-    if (x < 2) throw ApiResponse.Error("This is an error response");
+    if (x < 2) throw ApiResponse.UnknownError("asd");
     return data;
   },
-  getErrorMessage: () => {
-    const x = 1;
-    if (x < 2) throw ApiResponse.Error("This is an error response");
-    console.log("XXXX");
-  },
-  getNotFoundMessage: () => {
-    ApiResponse.NotFound();
+  getNotFoundMessage: (): string => {
+    throw ApiResponse.NotFoundError("ไม่พบข้อมูล");
   },
   getValidationErrorMessage: () => {
-    ApiResponse.ValidationError({ field: "This field is required" });
-  },
-  getUnauthorizedMessage: () => {
-    ApiResponse.Unauthorized();
-  },
-  getForbiddenMessage: () => {
-    ApiResponse.Forbidden();
-  },
-  getBadRequestMessage: () => {
-    ApiResponse.BadRequest();
-  },
-  getConflictMessage: () => {
-    ApiResponse.Conflict();
-  },
-  getInternalServerErrorMessage: () => {
-    ApiResponse.InternalServerError();
+    throw ApiResponse.ValidationError("ข้อมูลไม่ถูกต้อง");
   },
 };

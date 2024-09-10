@@ -3,6 +3,7 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import { RegisterRoutes } from "./routes";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
+import { errorHandler } from "./middlewares/errorHandler";
 
 const PORT = process.env.PORT || 8081;
 
@@ -33,7 +34,8 @@ app.use(router);
 
 RegisterRoutes(app);
 
-app.use(errorMiddleware);
+// app.use(errorMiddleware);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}/swagger`);
