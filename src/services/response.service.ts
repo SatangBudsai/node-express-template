@@ -1,13 +1,4 @@
 import { ApiResponse } from "../utils/response/response.utils";
-import {
-  NotFoundError,
-  ValidationError,
-  UnauthorizedError,
-  ForbiddenError,
-  BadRequestError,
-  ConflictError,
-  InternalServerError,
-} from "../utils/response/apiError";
 type mockData = {
   name: string;
   tel: string;
@@ -21,8 +12,7 @@ export const responseService = {
     };
     const x = 2;
     if (x < 2)
-      throw new InternalServerError({
-        code: 500,
+      throw new ApiResponse.InternalServerError({
         title: "Internal Server Error",
         message: "This is an error response",
       });
@@ -31,8 +21,7 @@ export const responseService = {
   getErrorMessage: () => {
     const x = 1;
     if (x < 2)
-      throw new InternalServerError({
-        code: 500,
+      throw new ApiResponse.InternalServerError({
         title: "Internal Server Error",
         message: "This is an error response",
         data: { additionalInfo: "Some extra data" },
@@ -41,11 +30,10 @@ export const responseService = {
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
-    throw new NotFoundError();
+    throw new ApiResponse.NotFoundError();
   },
   getValidationErrorMessage: () => {
-    throw new ValidationError({
-      code: 400,
+    throw new ApiResponse.ValidationError({
       title: "Validation Error",
       message: "This field is required",
       data: { additionalInfo: "Some extra data" },
@@ -53,18 +41,18 @@ export const responseService = {
     });
   },
   getUnauthorizedMessage: () => {
-    throw new UnauthorizedError();
+    throw new ApiResponse.UnauthorizedError();
   },
   getForbiddenMessage: () => {
-    throw new ForbiddenError();
+    throw new ApiResponse.ForbiddenError();
   },
   getBadRequestMessage: () => {
-    throw new BadRequestError();
+    throw new ApiResponse.BadRequestError();
   },
   getConflictMessage: () => {
-    throw new ConflictError();
+    throw new ApiResponse.ConflictError();
   },
   getInternalServerErrorMessage: () => {
-    throw new InternalServerError();
+    throw new ApiResponse.InternalServerError();
   },
 };

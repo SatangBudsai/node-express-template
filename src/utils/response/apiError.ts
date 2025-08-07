@@ -1,12 +1,12 @@
 export class ApiError extends Error {
-  code: number;
+  code?: number;
   status: "success" | "error";
   title: string;
   data?: any;
   errors?: any;
 
   constructor(options: {
-    code: number;
+    code?: number;
     message: string;
     title?: string;
     data?: any;
@@ -24,7 +24,6 @@ export class ApiError extends Error {
 export class NotFoundError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -32,7 +31,6 @@ export class NotFoundError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 404,
       message: options.message || "Not Found",
       title: options.title || "Not Found",
       data: options.data,
@@ -44,7 +42,6 @@ export class NotFoundError extends ApiError {
 export class ValidationError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -52,7 +49,6 @@ export class ValidationError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 400,
       message: options.message || "Validation Error",
       title: options.title || "Validation Error",
       data: options.data,
@@ -64,7 +60,6 @@ export class ValidationError extends ApiError {
 export class UnauthorizedError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -72,7 +67,6 @@ export class UnauthorizedError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 401,
       message: options.message || "Unauthorized",
       title: options.title || "Unauthorized",
       data: options.data,
@@ -84,7 +78,6 @@ export class UnauthorizedError extends ApiError {
 export class ForbiddenError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -92,7 +85,6 @@ export class ForbiddenError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 403,
       message: options.message || "Forbidden",
       title: options.title || "Forbidden",
       data: options.data,
@@ -104,7 +96,6 @@ export class ForbiddenError extends ApiError {
 export class BadRequestError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -112,7 +103,6 @@ export class BadRequestError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 400,
       message: options.message || "Bad Request",
       title: options.title || "Bad Request",
       data: options.data,
@@ -124,7 +114,6 @@ export class BadRequestError extends ApiError {
 export class ConflictError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -132,7 +121,6 @@ export class ConflictError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 409,
       message: options.message || "Conflict",
       title: options.title || "Conflict",
       data: options.data,
@@ -144,7 +132,6 @@ export class ConflictError extends ApiError {
 export class InternalServerError extends ApiError {
   constructor(
     options: {
-      code?: number;
       title?: string;
       message?: string;
       data?: any;
@@ -152,7 +139,6 @@ export class InternalServerError extends ApiError {
     } = {}
   ) {
     super({
-      code: options.code || 500,
       message: options.message || "Internal Server Error",
       title: options.title || "Internal Server Error",
       data: options.data,

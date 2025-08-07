@@ -21,6 +21,15 @@ const shouldLogErrors = (): boolean => {
 };
 
 export class ApiResponse {
+  // Export Error classes as static properties
+  static NotFoundError = NotFoundError;
+  static ValidationError = ValidationError;
+  static UnauthorizedError = UnauthorizedError;
+  static ForbiddenError = ForbiddenError;
+  static BadRequestError = BadRequestError;
+  static ConflictError = ConflictError;
+  static InternalServerError = InternalServerError;
+
   static Success<T>(options: {
     data: T;
     message?: string;
@@ -120,30 +129,6 @@ export class ApiResponse {
     });
   }
 
-  static ValidationError<T = null>(
-    options: {
-      message?: string;
-      title?: string;
-      data?: T;
-      errors?: any;
-    } = {}
-  ): ApiResponseType<T> {
-    const {
-      message = "Validation Error",
-      title = "Validation Error",
-      data = null as T,
-      errors = undefined,
-    } = options;
-
-    return this.Error({
-      message,
-      title,
-      code: 400,
-      data,
-      errors,
-    });
-  }
-
   static Unauthorized<T = null>(
     options: {
       message?: string;
@@ -235,30 +220,6 @@ export class ApiResponse {
       message,
       title,
       code: 409,
-      data,
-      errors,
-    });
-  }
-
-  static InternalServerError<T = null>(
-    options: {
-      message?: string;
-      title?: string;
-      data?: T;
-      errors?: any;
-    } = {}
-  ): ApiResponseType<T> {
-    const {
-      message = "Internal Server Error",
-      title = "Internal Server Error",
-      data = null as T,
-      errors = undefined,
-    } = options;
-
-    return this.Error({
-      message,
-      title,
-      code: 500,
       data,
       errors,
     });
