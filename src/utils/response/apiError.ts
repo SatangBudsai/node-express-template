@@ -22,7 +22,7 @@ export class ValidationError extends ApiError {
 }
 
 export class UnauthorizedError extends ApiError {
-  constructor(message = "Unauthorized") {
+  constructor(data: any = undefined, message = "Unauthorized") {
     super(401, message);
   }
 }
@@ -46,7 +46,7 @@ export class ConflictError extends ApiError {
 }
 
 export class InternalServerError extends ApiError {
-  constructor(message = "Internal Server Error") {
-    super(500, message);
+  constructor(message = "Internal Server Error", code = 500, data = undefined) {
+    super(code, message, data);
   }
 }
