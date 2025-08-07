@@ -12,19 +12,4 @@ export class UserController extends Controller {
     const res = await userService.getAll();
     return res;
   }
-
-  @Get("/test-error")
-  public async testError(): Promise<void> {
-    // Test validation error with errors field
-    ApiResponse.ValidationErrorThrow(
-      400,
-      "Validation Error",
-      "This field is required",
-      { field: "email" },
-      {
-        email: ["Email is required", "Email must be valid"],
-        password: ["Password is required"],
-      }
-    );
-  }
 }

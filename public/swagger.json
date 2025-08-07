@@ -144,21 +144,6 @@
 				"parameters": []
 			}
 		},
-		"/user/test-error": {
-			"get": {
-				"operationId": "TestError",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
 		"/response/success": {
 			"get": {
 				"operationId": "GetSuccess",

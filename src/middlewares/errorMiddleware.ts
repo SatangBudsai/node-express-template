@@ -17,19 +17,16 @@ export function errorMiddleware(
   const status = err.status || "error";
   const message = err.message || "Internal Server Error";
   const title = err.title || "Error";
-  const data = err.data || undefined;
 
   // Check if we should include errors in response
-  // const shouldLogErrors = process.env.LOGING_ERRORS === "Y";
-  const shouldLogErrors = true;
-
+  const shouldLogErrors = process.env.LOGING_ERRORS === "Y";
   const response: ApiResponseType<any> = {
     code,
     status,
     title,
     message,
-    data,
-    ...(shouldLogErrors && err.errors && { errors: err.errors }),
+    data: err.data || null,
+    errors: err.errors,
   };
 
   res.status(code).json(response);

@@ -12,13 +12,21 @@ export const responseService = {
     };
     const x = 2;
     if (x < 2)
-      throw ApiResponse.Error({ message: "This is an error response" });
+      ApiResponse.InternalServerError({
+        title: "Internal Server Error",
+        message: "This is an error response",
+      });
     return data;
   },
   getErrorMessage: () => {
     const x = 1;
     if (x < 2)
-      throw ApiResponse.Error({ message: "This is an error response" });
+      throw ApiResponse.InternalServerError({
+        title: "Internal Server Error",
+        message: "This is an error response",
+        errors: { field: "NAME" },
+        data: { additionalInfo: "Some extra data" },
+      });
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
@@ -26,6 +34,7 @@ export const responseService = {
   },
   getValidationErrorMessage: () => {
     throw ApiResponse.ValidationError({
+      title: "Validation Error",
       message: "This field is required",
       errors: { field: "NAME" },
     });
