@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { ApiResponseType } from "../utils/response/apiResponseType";
 
 export function errorMiddleware(
   err: any,
@@ -10,14 +11,26 @@ export function errorMiddleware(
     return next(err);
   }
 
-  const statusCode = err.statusCode || 500;
+  console.log("Error Middleware:", err);
+
+  const code = err.code || 500;
+  const status = err.status || "error";
   const message = err.message || "Internal Server Error";
+  const title = err.title || "Error";
   const data = err.data || undefined;
 
-  res.status(statusCode).json({
-    status: "error",
+  // Check if we should include errors in response
+  // const shouldLogErrors = process.env.LOGING_ERRORS === "Y";
+  const shouldLogErrors = true;
+
+  const response: ApiResponseType<any> = {
+    code,
+    status,
+    title,
     message,
-    code: statusCode,
     data,
-  });
+    ...(shouldLogErrors && err.errors && { errors: err.errors }),
+  };
+
+  res.status(code).json(response);
 }

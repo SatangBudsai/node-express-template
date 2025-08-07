@@ -11,33 +11,38 @@ export const responseService = {
       tel: " test",
     };
     const x = 2;
-    if (x < 2) throw ApiResponse.Error("This is an error response");
+    if (x < 2)
+      throw ApiResponse.Error({ message: "This is an error response" });
     return data;
   },
   getErrorMessage: () => {
     const x = 1;
-    if (x < 2) throw ApiResponse.Error("This is an error response");
+    if (x < 2)
+      throw ApiResponse.Error({ message: "This is an error response" });
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
-    ApiResponse.NotFound();
+    throw ApiResponse.NotFound();
   },
   getValidationErrorMessage: () => {
-    ApiResponse.ValidationError({ field: "This field is required" });
+    throw ApiResponse.ValidationError({
+      message: "This field is required",
+      errors: { field: "NAME" },
+    });
   },
   getUnauthorizedMessage: () => {
-    ApiResponse.Unauthorized();
+    throw ApiResponse.Unauthorized();
   },
   getForbiddenMessage: () => {
-    ApiResponse.Forbidden();
+    throw ApiResponse.Forbidden();
   },
   getBadRequestMessage: () => {
-    ApiResponse.BadRequest();
+    throw ApiResponse.BadRequest();
   },
   getConflictMessage: () => {
-    ApiResponse.Conflict();
+    throw ApiResponse.Conflict();
   },
   getInternalServerErrorMessage: () => {
-    ApiResponse.InternalServerError();
+    throw ApiResponse.InternalServerError();
   },
 };

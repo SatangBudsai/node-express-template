@@ -65,14 +65,14 @@
 			},
 			"ApiResponseType_mockData_": {
 				"properties": {
+					"errors": {},
 					"data": {
 						"$ref": "#/components/schemas/mockData"
 					},
-					"code": {
-						"type": "number",
-						"format": "double"
-					},
 					"message": {
+						"type": "string"
+					},
+					"title": {
 						"type": "string"
 					},
 					"status": {
@@ -81,12 +81,17 @@
 							"success",
 							"error"
 						]
+					},
+					"code": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
-					"code",
 					"message",
-					"status"
+					"title",
+					"status",
+					"code"
 				],
 				"type": "object"
 			},
@@ -130,6 +135,21 @@
 								}
 							}
 						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/user/test-error": {
+			"get": {
+				"operationId": "TestError",
+				"responses": {
+					"204": {
+						"description": "No content"
 					}
 				},
 				"tags": [

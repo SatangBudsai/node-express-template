@@ -12,7 +12,7 @@ export class ResponseController extends Controller {
   @Get("success")
   public async getSuccess(): Promise<ApiResponseType<mockData>> {
     const res = responseService.getData();
-    return ApiResponse.Success(res);
+    return ApiResponse.Success({ data: res });
   }
 
   @Get("error")
