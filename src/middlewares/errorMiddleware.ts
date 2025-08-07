@@ -20,7 +20,8 @@ export function errorMiddleware(
   const data = err.data || undefined;
 
   // Check if we should include errors in response
-  const shouldLogErrors = process.env.LOGING_ERRORS === "Y";
+  // const shouldLogErrors = process.env.LOGING_ERRORS === "Y";
+  const shouldLogErrors = true;
 
   const response: ApiResponseType<any> = {
     code,

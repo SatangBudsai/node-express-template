@@ -17,8 +17,10 @@ export class UserController extends Controller {
   public async testError(): Promise<void> {
     // Test validation error with errors field
     ApiResponse.ValidationErrorThrow(
-      { field: "email" },
+      400,
+      "Validation Error",
       "This field is required",
+      { field: "email" },
       {
         email: ["Email is required", "Email must be valid"],
         password: ["Password is required"],
