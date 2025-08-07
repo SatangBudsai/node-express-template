@@ -82,7 +82,7 @@ export class ApiResponse {
       errors = undefined,
     } = options;
 
-    throw new InternalServerError(message, code, data);
+    throw new InternalServerError(message, code, data, errors);
   }
 
   static ErrorResponse<T = null>(options: {
@@ -140,8 +140,12 @@ export class ApiResponse {
     });
   }
 
-  static NotFoundThrow(message = "Not Found", title = "Not Found"): never {
-    throw new NotFoundError(message);
+  static NotFoundThrow(
+    message = "Not Found",
+    title = "Not Found",
+    errors?: any
+  ): never {
+    throw new NotFoundError(message, errors);
   }
 
   static NotFoundResponse<T = null>(
@@ -183,8 +187,12 @@ export class ApiResponse {
     });
   }
 
-  static ValidationErrorThrow(data: any, message = "Validation Error"): never {
-    throw new ValidationError(data, message);
+  static ValidationErrorThrow(
+    data: any,
+    message = "Validation Error",
+    errors?: any
+  ): never {
+    throw new ValidationError(data, message, errors);
   }
 
   static ValidationErrorResponse<T = null>(
@@ -226,8 +234,12 @@ export class ApiResponse {
     });
   }
 
-  static UnauthorizedThrow(data = undefined, message = "Unauthorized"): never {
-    throw new UnauthorizedError(data, message);
+  static UnauthorizedThrow(
+    data = undefined,
+    message = "Unauthorized",
+    errors?: any
+  ): never {
+    throw new UnauthorizedError(data, message, errors);
   }
 
   static UnauthorizedResponse<T = null>(
@@ -269,8 +281,8 @@ export class ApiResponse {
     });
   }
 
-  static ForbiddenThrow(message = "Forbidden"): never {
-    throw new ForbiddenError(message);
+  static ForbiddenThrow(message = "Forbidden", errors?: any): never {
+    throw new ForbiddenError(message, errors);
   }
 
   static ForbiddenResponse<T = null>(
@@ -312,8 +324,8 @@ export class ApiResponse {
     });
   }
 
-  static BadRequestThrow(message = "Bad Request"): never {
-    throw new BadRequestError(message);
+  static BadRequestThrow(message = "Bad Request", errors?: any): never {
+    throw new BadRequestError(message, errors);
   }
 
   static BadRequestResponse<T = null>(
@@ -355,8 +367,8 @@ export class ApiResponse {
     });
   }
 
-  static ConflictThrow(message = "Conflict"): never {
-    throw new ConflictError(message);
+  static ConflictThrow(message = "Conflict", errors?: any): never {
+    throw new ConflictError(message, errors);
   }
 
   static ConflictResponse<T = null>(
@@ -398,8 +410,11 @@ export class ApiResponse {
     });
   }
 
-  static InternalServerErrorThrow(message = "Internal Server Error"): never {
-    throw new InternalServerError(message);
+  static InternalServerErrorThrow(
+    message = "Internal Server Error",
+    errors?: any
+  ): never {
+    throw new InternalServerError(message, 500, undefined, errors);
   }
 
   static InternalServerErrorResponse<T = null>(

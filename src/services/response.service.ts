@@ -22,24 +22,27 @@ export const responseService = {
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
-    ApiResponse.NotFound();
+    throw ApiResponse.NotFound();
   },
   getValidationErrorMessage: () => {
-    ApiResponse.ValidationError({ message: "This field is required" });
+    throw ApiResponse.ValidationError({
+      message: "This field is required",
+      errors: { field: "NAME" },
+    });
   },
   getUnauthorizedMessage: () => {
-    ApiResponse.Unauthorized();
+    throw ApiResponse.Unauthorized();
   },
   getForbiddenMessage: () => {
-    ApiResponse.Forbidden();
+    throw ApiResponse.Forbidden();
   },
   getBadRequestMessage: () => {
-    ApiResponse.BadRequest();
+    throw ApiResponse.BadRequest();
   },
   getConflictMessage: () => {
-    ApiResponse.Conflict();
+    throw ApiResponse.Conflict();
   },
   getInternalServerErrorMessage: () => {
-    ApiResponse.InternalServerError();
+    throw ApiResponse.InternalServerError();
   },
 };
