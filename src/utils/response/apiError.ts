@@ -5,102 +5,158 @@ export class ApiError extends Error {
   data?: any;
   errors?: any;
 
-  constructor(
-    code: number,
-    message: string,
-    title?: string,
-    data?: any,
-    errors?: any
-  ) {
-    super(message);
-    this.code = code;
+  constructor(options: {
+    code: number;
+    message: string;
+    title?: string;
+    data?: any;
+    errors?: any;
+  }) {
+    super(options.message);
+    this.code = options.code;
     this.status = "error";
-    this.title = title || "Error";
-    this.data = data;
-    this.errors = errors;
+    this.title = options.title || "Error";
+    this.data = options.data;
+    this.errors = options.errors;
   }
 }
 
 export class NotFoundError extends ApiError {
   constructor(
-    code: number = 404,
-    title: string = "Not Found",
-    message: string = "Not Found",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 404,
+      message: options.message || "Not Found",
+      title: options.title || "Not Found",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }
 
 export class ValidationError extends ApiError {
   constructor(
-    code: number = 400,
-    title: string = "Validation Error",
-    message: string = "Validation Error",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 400,
+      message: options.message || "Validation Error",
+      title: options.title || "Validation Error",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }
 
 export class UnauthorizedError extends ApiError {
   constructor(
-    code: number = 401,
-    title: string = "Unauthorized",
-    message: string = "Unauthorized",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 401,
+      message: options.message || "Unauthorized",
+      title: options.title || "Unauthorized",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }
 
 export class ForbiddenError extends ApiError {
   constructor(
-    code: number = 403,
-    title: string = "Forbidden",
-    message: string = "Forbidden",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 403,
+      message: options.message || "Forbidden",
+      title: options.title || "Forbidden",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }
 
 export class BadRequestError extends ApiError {
   constructor(
-    code: number = 400,
-    title: string = "Bad Request",
-    message: string = "Bad Request",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 400,
+      message: options.message || "Bad Request",
+      title: options.title || "Bad Request",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }
 
 export class ConflictError extends ApiError {
   constructor(
-    code: number = 409,
-    title: string = "Conflict",
-    message: string = "Conflict",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 409,
+      message: options.message || "Conflict",
+      title: options.title || "Conflict",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }
 
 export class InternalServerError extends ApiError {
   constructor(
-    code: number = 500,
-    title: string = "Internal Server Error",
-    message: string = "Internal Server Error",
-    data?: any,
-    errors?: any
+    options: {
+      code?: number;
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
   ) {
-    super(code, message, title, data, errors);
+    super({
+      code: options.code || 500,
+      message: options.message || "Internal Server Error",
+      title: options.title || "Internal Server Error",
+      data: options.data,
+      errors: options.errors,
+    });
   }
 }

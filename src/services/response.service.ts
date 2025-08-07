@@ -21,36 +21,36 @@ export const responseService = {
     };
     const x = 2;
     if (x < 2)
-      throw new InternalServerError(
-        500,
-        "Internal Server Error",
-        "This is an error response"
-      );
+      throw new InternalServerError({
+        code: 500,
+        title: "Internal Server Error",
+        message: "This is an error response",
+      });
     return data;
   },
   getErrorMessage: () => {
     const x = 1;
     if (x < 2)
-      throw new InternalServerError(
-        500,
-        "Internal Server Error",
-        "This is an error response",
-        { additionalInfo: "Some extra data" },
-        { field: "NAME" }
-      );
+      throw new InternalServerError({
+        code: 500,
+        title: "Internal Server Error",
+        message: "This is an error response",
+        data: { additionalInfo: "Some extra data" },
+        errors: { field: "NAME" },
+      });
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
     throw new NotFoundError();
   },
   getValidationErrorMessage: () => {
-    throw new ValidationError(
-      400,
-      "Validation Error",
-      "This field is required",
-      undefined,
-      { field: "NAME" }
-    );
+    throw new ValidationError({
+      code: 400,
+      title: "Validation Error",
+      message: "This field is required",
+      data: { additionalInfo: "Some extra data" },
+      errors: { field: "NAME" },
+    });
   },
   getUnauthorizedMessage: () => {
     throw new UnauthorizedError();
