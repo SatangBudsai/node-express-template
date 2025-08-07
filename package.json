@@ -5,16 +5,16 @@
   "license": "MIT",
   "description": "API Service Node Express Template",
   "dependencies": {
-    "@prisma/client": "^5.16.1",
-    "@types/morgan": "^1.9.9",
-    "express": "^4.19.2",
-    "joi": "^17.13.3",
-    "morgan": "^1.10.0",
-    "open": "^10.1.0",
-    "prisma": "^5.16.1",
-    "swagger-ui-express": "^5.0.1",
-    "tsoa": "^6.3.1",
-    "wait-on": "^7.2.0"
+    "@prisma/client": "5.16.1",
+    "@types/morgan": "1.9.9",
+    "express": "4.19.2",
+    "joi": "17.13.3",
+    "morgan": "1.10.0",
+    "open": "10.1.0",
+    "prisma": "5.16.1",
+    "swagger-ui-express": "5.0.1",
+    "tsoa": "6.3.1",
+    "wait-on": "7.2.0"
   },
   "scripts": {
     "build": "tsc",
@@ -27,14 +27,14 @@
     "dev": "yarn build:routes && nodemon"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.14.9",
-    "@types/swagger-ui-express": "^4.1.6",
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.1.4",
+    "@types/express": "4.17.21",
+    "@types/node": "20.14.9",
+    "@types/swagger-ui-express": "4.1.6",
+    "concurrently": "8.2.2",
+    "nodemon": "3.1.4",
     "prettier": "3.3.3",
-    "prisma-generator-types-crud": "^1.1.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.3"
+    "prisma-generator-types-crud": "1.1.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.3"
   }
 }

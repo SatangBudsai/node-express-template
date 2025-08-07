@@ -40,16 +40,6 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"message":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "massage_type": {
-        "dataType": "refEnum",
-        "enums": ["text","image"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "messageCreateType": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"update_time":{"dataType":"union","subSchemas":[{"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"string"}]},{"dataType":"enum","enums":[null]}]},"created_time":{"dataType":"union","subSchemas":[{"dataType":"datetime"},{"dataType":"string"}]},"user_read":{"dataType":"union","subSchemas":[{"dataType":"any"},{"dataType":"enum","enums":[null]}]},"message":{"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}]},"type":{"dataType":"union","subSchemas":[{"ref":"massage_type"},{"dataType":"enum","enums":[null]}]},"conversation_id":{"dataType":"string"},"sender_id":{"dataType":"string","required":true}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const templateService = new ExpressTemplateService(models, {"noImplicitAdditionalProperties":"throw-on-extras","bodyCoercion":true});
 
@@ -368,36 +358,6 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'getMessage',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/ping',
-            ...(fetchMiddlewares<RequestHandler>(PingController)),
-            ...(fetchMiddlewares<RequestHandler>(PingController.prototype.createMessage)),
-
-            async function PingController_createMessage(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    req: {"in":"body","name":"req","required":true,"ref":"messageCreateType"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
-
-                const controller = new PingController();
-
-              await templateService.apiHandler({
-                methodName: 'createMessage',
                 controller,
                 response,
                 next,
