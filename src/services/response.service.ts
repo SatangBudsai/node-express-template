@@ -1,4 +1,13 @@
 import { ApiResponse } from "../utils/response/response.utils";
+import {
+  NotFoundError,
+  ValidationError,
+  UnauthorizedError,
+  ForbiddenError,
+  BadRequestError,
+  ConflictError,
+  InternalServerError,
+} from "../utils/response/apiError";
 type mockData = {
   name: string;
   tel: string;
@@ -12,7 +21,7 @@ export const responseService = {
     };
     const x = 2;
     if (x < 2)
-      ApiResponse.InternalServerErrorThrow(
+      throw new InternalServerError(
         500,
         "Internal Server Error",
         "This is an error response"
@@ -22,7 +31,7 @@ export const responseService = {
   getErrorMessage: () => {
     const x = 1;
     if (x < 2)
-      ApiResponse.InternalServerErrorThrow(
+      throw new InternalServerError(
         500,
         "Internal Server Error",
         "This is an error response",
@@ -32,10 +41,10 @@ export const responseService = {
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
-    ApiResponse.NotFoundThrow();
+    throw new NotFoundError();
   },
   getValidationErrorMessage: () => {
-    ApiResponse.ValidationErrorThrow(
+    throw new ValidationError(
       400,
       "Validation Error",
       "This field is required",
@@ -44,18 +53,18 @@ export const responseService = {
     );
   },
   getUnauthorizedMessage: () => {
-    ApiResponse.UnauthorizedThrow();
+    throw new UnauthorizedError();
   },
   getForbiddenMessage: () => {
-    ApiResponse.ForbiddenThrow();
+    throw new ForbiddenError();
   },
   getBadRequestMessage: () => {
-    ApiResponse.BadRequestThrow();
+    throw new BadRequestError();
   },
   getConflictMessage: () => {
-    ApiResponse.ConflictThrow();
+    throw new ConflictError();
   },
   getInternalServerErrorMessage: () => {
-    ApiResponse.InternalServerErrorThrow();
+    throw new InternalServerError();
   },
 };
