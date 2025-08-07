@@ -26,7 +26,7 @@ export function errorMiddleware(
     title,
     message,
     data: err.data || null,
-    errors: err.errors,
+    errors: shouldLogErrors ? err.errors || null : err.errors,
   };
 
   res.status(code).json(response);

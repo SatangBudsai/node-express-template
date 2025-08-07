@@ -12,46 +12,50 @@ export const responseService = {
     };
     const x = 2;
     if (x < 2)
-      ApiResponse.InternalServerError({
-        title: "Internal Server Error",
-        message: "This is an error response",
-      });
+      ApiResponse.InternalServerErrorThrow(
+        500,
+        "Internal Server Error",
+        "This is an error response"
+      );
     return data;
   },
   getErrorMessage: () => {
     const x = 1;
     if (x < 2)
-      throw ApiResponse.InternalServerError({
-        title: "Internal Server Error",
-        message: "This is an error response",
-        errors: { field: "NAME" },
-        data: { additionalInfo: "Some extra data" },
-      });
+      ApiResponse.InternalServerErrorThrow(
+        500,
+        "Internal Server Error",
+        "This is an error response",
+        { additionalInfo: "Some extra data" },
+        { field: "NAME" }
+      );
     console.log("XXXX");
   },
   getNotFoundMessage: () => {
-    throw ApiResponse.NotFound();
+    ApiResponse.NotFoundThrow();
   },
   getValidationErrorMessage: () => {
-    throw ApiResponse.ValidationError({
-      title: "Validation Error",
-      message: "This field is required",
-      errors: { field: "NAME" },
-    });
+    ApiResponse.ValidationErrorThrow(
+      400,
+      "Validation Error",
+      "This field is required",
+      undefined,
+      { field: "NAME" }
+    );
   },
   getUnauthorizedMessage: () => {
-    throw ApiResponse.Unauthorized();
+    ApiResponse.UnauthorizedThrow();
   },
   getForbiddenMessage: () => {
-    throw ApiResponse.Forbidden();
+    ApiResponse.ForbiddenThrow();
   },
   getBadRequestMessage: () => {
-    throw ApiResponse.BadRequest();
+    ApiResponse.BadRequestThrow();
   },
   getConflictMessage: () => {
-    throw ApiResponse.Conflict();
+    ApiResponse.ConflictThrow();
   },
   getInternalServerErrorMessage: () => {
-    throw ApiResponse.InternalServerError();
+    ApiResponse.InternalServerErrorThrow();
   },
 };
