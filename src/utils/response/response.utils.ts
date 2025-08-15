@@ -76,8 +76,8 @@ export class ApiResponse {
 
   static Error<T = null>(options: {
     message: string;
-    title: string;
-    code: number;
+    title?: string;
+    code?: number;
     data?: T;
     errors?: any;
   }): ApiResponseType<T> {
@@ -90,9 +90,9 @@ export class ApiResponse {
     } = options;
 
     const response: ApiResponseType<T> = {
-      code,
+      code: code || 500,
       status: "error",
-      title,
+      title: title || "Error",
       message,
       data,
     };
