@@ -1,17 +1,156 @@
-import {
-  NotFoundError,
-  ValidationError,
-  UnauthorizedError,
-  ForbiddenError,
-  BadRequestError,
-  ConflictError,
-  InternalServerError,
-} from "./apiError";
 import { ApiResponseType } from "./apiResponseType";
+
+class ApiError extends Error {
+  code?: number;
+  status: "success" | "error";
+  title: string;
+  data?: any;
+  errors?: any;
+
+  constructor(options: {
+    code?: number;
+    message: string;
+    title?: string;
+    data?: any;
+    errors?: any;
+  }) {
+    super(options.message);
+    this.code = options.code;
+    this.status = "error";
+    this.title = options.title || "Error";
+    this.data = options.data;
+    this.errors = options.errors;
+  }
+}
+
+class NotFoundError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Not Found",
+      title: options.title || "Not Found",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
+
+class ValidationError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Validation Error",
+      title: options.title || "Validation Error",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
+
+class UnauthorizedError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Unauthorized",
+      title: options.title || "Unauthorized",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
+
+class ForbiddenError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Forbidden",
+      title: options.title || "Forbidden",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
+
+class BadRequestError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Bad Request",
+      title: options.title || "Bad Request",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
+
+class ConflictError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Conflict",
+      title: options.title || "Conflict",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
+
+class InternalServerError extends ApiError {
+  constructor(
+    options: {
+      title?: string;
+      message?: string;
+      data?: any;
+      errors?: any;
+    } = {}
+  ) {
+    super({
+      message: options.message || "Internal Server Error",
+      title: options.title || "Internal Server Error",
+      data: options.data,
+      errors: options.errors,
+    });
+  }
+}
 
 declare const process: any;
 
-// Helper function to check if logging errors is enabled
 const shouldLogErrors = (): boolean => {
   try {
     return process?.env?.LOGING_ERRORS === "Y";
@@ -21,14 +160,13 @@ const shouldLogErrors = (): boolean => {
 };
 
 export class ApiResponse {
-  // Export Error classes as static properties
-  static NotFoundError = NotFoundError;
-  static ValidationError = ValidationError;
-  static UnauthorizedError = UnauthorizedError;
-  static ForbiddenError = ForbiddenError;
-  static BadRequestError = BadRequestError;
-  static ConflictError = ConflictError;
-  static InternalServerError = InternalServerError;
+  static readonly NotFoundError = NotFoundError;
+  static readonly ValidationError = ValidationError;
+  static readonly UnauthorizedError = UnauthorizedError;
+  static readonly ForbiddenError = ForbiddenError;
+  static readonly BadRequestError = BadRequestError;
+  static readonly ConflictError = ConflictError;
+  static readonly InternalServerError = InternalServerError;
 
   static Success<T>(options: {
     data: T;
@@ -97,7 +235,6 @@ export class ApiResponse {
       data,
     };
 
-    // Only include errors if LOGING_ERRORS is set to 'Y' and errors exist
     if (shouldLogErrors() && errors) {
       response.errors = errors;
     }
